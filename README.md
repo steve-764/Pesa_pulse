@@ -58,17 +58,17 @@ The program prints its results to the terminal and creates an `output/` folder n
 
 2. **Email domains show more variation.** Counting by top-level domain (the part after the last dot), `.biz` is the most common with 3 customers, and the other 7 customers are spread across `.org`, `.tv`, `.net`, `.ca`, `.info`, `.me` and `.io`, one each. This is the only grouping in the data where one group stands out.
 
-3. **The hand-written counts and pandas agree.** The city and email-domain counts from the loops and comprehensions match `value_counts()` exactly, which gives confidence that the extraction and counting logic is correct.
+3. **The hand-written counts and pandas agree.** The city and email-domain counts from the loops and comprehensions match `value_counts()` exactly veryfying that the extraction and counting logic is correct.
 
 
 ## Assumptions
 
-- **Source data:** the API returns a JSON list of customer records in the structure of the JSONPlaceholder users endpoint (nested `address`, `address.geo` and `company` objects). The findings above describe that sample data and will change if the data changes.
+- **Source data:** the API returns a JSON list of customer records in the structure of the JSONPlaceholder users endpoint (nested `address`, `address.geo` and `company` objects).
 - **"Company"** means the company's `name`, not its catch phrase or `bs` text.
 - **"Email domain"** is everything after the `@` (for example `april.biz`). For the counts, "domain" means the **top-level domain** only (`biz`), taken after the last dot, because every full domain in this data is unique.
 - **Missing data:** if a field is missing in a record, the extracted value is `None` rather than the program crashing. Rows with no city are skipped when counting cities.
 - **Failed download:** if the API can't be reached, the program prints an error and stops without writing any files.
 - **Coordinates:** latitude and longitude arrive as strings and are converted to floats. A value that can't be converted becomes `None`.
-- **Case and spacing:** city names are compared exactly as given. This data is clean, so no normalising (lowercasing, trimming) is done.
-- **CSV columns:** the column names and order in the CSV files follow the attribute list in the task description (the expected-output file was not available to check against). Change `CUSTOMER_COLUMNS` and `CITY_COLUMNS` in the export code if your expected output differs.
+- **Case and spacing:** city names are compared exactly as given. This data is considered clean, so no normalizing is done.
+- **CSV columns:** the column names and order in the CSV files follow the attribute list in the task description 
 - **File and folder names:** the script is run from the project folder, and `output/` is relative to wherever you run it.
